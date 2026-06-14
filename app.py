@@ -161,7 +161,7 @@ with tab2:
     if df.empty:
         st.info("아직 저장된 기록이 없습니다.")
     else:
-        st.dataframe(df[["date", "artist", "concert", "venue", "price"]], use_column_width=True)
+        st.dataframe(df[["date", "artist", "concert", "venue", "price"]])
 
 with tab3:
     st.subheader("공연 기록 통계")
@@ -183,10 +183,10 @@ with tab3:
         st.markdown("### 가장 많이 본 아티스트 순위")
         artist_rank = df["artist"].value_counts().reset_index()
         artist_rank.columns = ["artist", "count"]
-        st.dataframe(artist_rank, use_column_width=True)
+        st.dataframe(artist_rank)
         st.bar_chart(artist_rank.set_index("artist"))
 
         st.markdown("### 월별 공연 소비 금액")
         month_cost = df.groupby("month", as_index=False)["price"].sum()
-        st.dataframe(month_cost, use_column_width=True)
+        st.dataframe(month_cost)
         st.bar_chart(month_cost.set_index("month"))
